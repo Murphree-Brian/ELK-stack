@@ -16,14 +16,14 @@ The configuration details of each machine may be found below.
 
 
 
-| Name                | Function    | IP Address | Operating System |
-| ------------------- | ----------- | ---------- | ---------------- |
-| JumpBox Provisioner | Gateway     | 10.0.0.4   | Linux            |
-| Web 1               | Web access  | 10.0.0.5   | Linux            |
-| Web 2               | Web access  | 10.0.0.7   | Linux            |
-| ELK1                | Kibana host | 10.1.0.4   | Linux            |
+| Name                | Function    | IP Address              | Operating System |
+|---------------------|-------------|-------------------------|------------------|
+| JumpBox Provisioner | Gateway     | 10.0.0.1                | Linux            |
+| Web 1               | Web access  | 10.0.0.5                | Linux            |
+| Web 2               | Web access  | 10.0.0.6                | Linux            |
+| ELK1                | Kibana host | 10.1.0.1 /[External IP] | Linux            |
 
-
+*ELK1 VM external IP will vary, and will be needed to open Kibana
 
 ### Access Policies
 
@@ -88,12 +88,12 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to /etc to check that the installation worked as expected.
 
 
-- `/etc/ansible/hosts`
-- pentest.yml
-- Kibana
+-The file for this configuration in ansible is labeled: `/etc/ansible/hosts`
+- Then create a file called `pentest.yml`, and update it with the playbook at the bottom
+- The http address of Kibana through 5601 is as follows; http://[ELK VM external IP]:5601/app/kibana#/home
 
 
-Contained underneath is the configuration of .yml file. (for my purposes, this was named pentest.yml):
+Contained underneath is the configuration of pentest.yml, the file to configure Docker and Python:
 
 
 ```yaml
@@ -131,4 +131,59 @@ Contained underneath is the configuration of .yml file. (for my purposes, this w
     systemd:
       name: docker
       enabled: yes
+```
+
+Also, you can find below the playbook for install-elk.yml, which has a specific detail of the ports that ELK runs on. I have included both for depth, but the .yml file configurations can be used and modified to keep the playbooks concise.
+
+```yaml
+ name: Configure Elk VM with Docker
+  hosts: elk
+  remote_user: azadmin
+  become: true
+  tasks:
+    # Use apt module
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: docker.io
+        state: present
+
+      # Use apt module
+    - name: Install python3-pip
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+      # Use pip module (It will default to pip3)
+    - name: Install Docker module
+      pip:
+        name: docker
+        state: present
+
+      # Use command module
+    - name: Increase virtual memory
+      command: sysctl -w vm.max_map_count=262144
+
+      # Use sysctl module
+    - name: Use more memory
+      sysctl:
+        name: vm.max_map_count
+        value: '262144'
+        state: present
+        reload: yes
+
+      # Use docker_container module
+    - name: download and launch a docker elk container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        # Please list the ports that ELK runs on
+        published_ports:
+          -  5601:5601
+          -  9200:9200
+          -  5044:5044
 ```
