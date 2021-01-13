@@ -21,7 +21,7 @@ The configuration details of each machine may be found below.
 | JumpBox Provisioner | Gateway     | 10.0.0.1                | Linux            |
 | Web 1               | Web access  | 10.0.0.5                | Linux            |
 | Web 2               | Web access  | 10.0.0.6                | Linux            |
-| ELK1                | Kibana host | 10.1.0.1 /[External IP] | Linux            |
+| ELK1                | Kibana host | 10.1.0.4 /[External IP] | Linux            |
 
 *ELK1 VM external IP will vary, and will be needed to open Kibana
 
