@@ -1,6 +1,6 @@
 # ELK-stack
 
-![image](ELK-stack-Diagram.png)
+![image](ELKstackDiagram.png)
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
