@@ -58,7 +58,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![image](ELK DOCKER PS.PNG)
+![image]("ELK DOCKER PS.PNG")
 
 
 
