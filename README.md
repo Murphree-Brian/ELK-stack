@@ -1,4 +1,7 @@
 # ELK-stack
+
+![image](ELK-DOCKER-PS.PNG)
+
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly stable, in addition to restricting traffic to the network.
