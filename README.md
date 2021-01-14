@@ -21,7 +21,7 @@ The configuration details of each machine may be found below.
 
 | Name                | Function    | IP Address              | Operating System |
 |---------------------|-------------|-------------------------|------------------|
-| JumpBox Provisioner | Gateway     | 10.0.0.1                | Linux            |
+| JumpBox Provisioner | Gateway     | 10.0.0.4                | Linux            |
 | Web 1               | Web access  | 10.0.0.5                | Linux            |
 | Web 2               | Web access  | 10.0.0.6                | Linux            |
 | ELK1                | Kibana host | 10.1.0.4 /[External IP] | Linux            |
