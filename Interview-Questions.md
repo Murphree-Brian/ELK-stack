@@ -61,7 +61,7 @@ In the process of assembling the VM network needed to run the ELK stack, all the
 
 NSG's were placed to constrain the networks and prevent unwanted traffic, while permitting wanted traffic. On RedTeamNSG, an IP-only constraint  was placed to restrict inbound to the IP of the user's computer, making sure that nobody but the user could gain access. SSH was allowed so that each VM could be accessed via SSH. All SSH keys were specifically secured inside the password settings in the VM setup. Traffic from port was also permitted in to allow HTTP traffic into the system for the purposes of the DVWA. VNET inbound traffic was also permitted, so the user could easily move from one server to the next. This inbound traffic, and load balancer traffic, were the only traffic allowed into the RedTeamNSG. The only difference on the ELK1-NSG was the Port5601 traffic permitted in.
 
-The ELK stack solution, done through a Jump Box, can scale, but in a limited way. Using one Jump Box can simplify the system, and make updates easy. Using a VPN is more accessible, but with that accessibility, comes more vulnerability. Full VPNs are harder to stand up than a simple jump box. A jumpbox is easier to seclude than a full featured VPN and easier to set up, but if it is compromised, it's a critical loss to the system.
+The ELK stack solution, done through a Jump Box, can scale, but in a limited way. Using one Jump Box can simplify the system, and make updates easy. Using a VPN is more accessible, but with that accessibility, comes more complexity. Full VPNs are harder to stand up than a simple jump box. A jumpbox is easier to seclude than a full featured VPN and easier to set up, but if it is compromised, it's a critical loss to the system.
 
 
 
